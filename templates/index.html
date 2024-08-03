@@ -1,0 +1,18 @@
+{% extends 'base.html' %} 
+{% block content %}
+<h2>Book List</h2>
+<ul>
+    {% for book_id, book in enumerate(books) %}
+    <li>
+        {{ book.title }} by {{ book.author }}
+        <a href="{{ url_for('edit_book', book_id=book_id) }}">Edit</a>
+        <form
+            action="{{ url_for('delete_book', book_id=book_id )}}"
+            method="post"
+        >
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
